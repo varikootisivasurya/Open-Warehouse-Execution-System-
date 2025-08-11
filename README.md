@@ -87,8 +87,3 @@ The architecture of Open WES is modular and scalable, designed to handle complex
 
 ![Architecture](server/doc/image/architecture.png)
 
-## Getting Help
-
-If you encounter issues or have questions, check out the following resources:
-- [GitHub Issues](https://github.com/jingsewu/open-wes/issues): Report bugs or request features.
-- [Documentation](https://docs.openwes.top): Find detailed guides and API documentation.  
