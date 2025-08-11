@@ -1,12 +1,5 @@
 # Open Warehouse Execution System (WES)
 
-![GitHub Repo stars](https://img.shields.io/github/stars/jingsewu/open-wes?style=social)
-![License](https://img.shields.io/github/license/jingsewu/open-wes)
-![Release](https://img.shields.io/github/v/release/jingsewu/open-wes)
-![Gitee Stars](https://gitee.com/pigTear/open-wes/badge/star.svg?theme=social)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/jingsewu/open-wes)
-
-[English](README.md) | [中文](README_CN.md) | [日本語](README_JP.md)
 
 **Open WES** is a customizable, open-source Warehouse Execution System designed to streamline warehouse operations. It
 integrates seamlessly with various automation technologies, providing efficient workflow management, task scheduling,
@@ -87,18 +80,7 @@ We welcome contributions from the community to help improve this project. To con
 3. Make your changes and commit them.
 4. Submit a pull request, detailing your changes and the problem they solve.
 
-Please review our [Contribution Guidelines](CONTRIBUTING.md) for more information.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-If you have any questions or need assistance, feel free to reach out to us on
-our [GitHub Issues](https://github.com/jingsewu/open-wes/issues) page.
-
-Thank you for using and contributing !
 
 ## Architecture
 The architecture of Open WES is modular and scalable, designed to handle complex warehouse operations. Below is a high-level overview of its components:
