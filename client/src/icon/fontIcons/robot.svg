@@ -1,0 +1,43 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main circle background -->
+  <circle cx="50" cy="50" r="45" fill="#1890ff">
+    <animate 
+      attributeName="opacity" 
+      values="1;0.8;1" 
+      dur="2s" 
+      repeatCount="indefinite"
+    />
+  </circle>
+  
+  <!-- Chat bubble -->
+  <path d="M30 35 L70 35 C75 35 75 35 75 40 L75 60 C75 65 75 65 70 65 L55 65 L50 70 L45 65 L30 65 C25 65 25 65 25 60 L25 40 C25 35 25 35 30 35" 
+        fill="white"/>
+  
+  <!-- Animated dots -->
+  <circle cx="38" cy="50" r="3" fill="#1890ff">
+    <animate
+      attributeName="opacity"
+      values="0;1;1;1;0"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+  </circle>
+  
+  <circle cx="50" cy="50" r="3" fill="#1890ff">
+    <animate
+      attributeName="opacity"
+      values="0;0;1;1;0"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+  </circle>
+  
+  <circle cx="62" cy="50" r="3" fill="#1890ff">
+    <animate
+      attributeName="opacity"
+      values="0;0;0;1;0"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+  </circle>
+</svg>

@@ -1,0 +1,138 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: ./client
+      args:
+        # for international
+        #NPM_REGISTRY: ${NPM_REGISTRY:-https://registry.npmjs.org}
+        # for china main land
+        NPM_REGISTRY: ${NPM_REGISTRY:-https://registry.npmmirror.com}
+    ports:
+      - "80:80"
+    extra_hosts:
+      - "api-gateway:${HOST_IP}"  # Uses the variable from the command
+    networks:
+      - my-network
+
+  # Gateway Server
+  gateway-server:
+    build:
+      context: ./server/
+      target: gateway
+    ports:
+      - "8090:8090"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      nacos:
+        condition: service_healthy
+    networks:
+      - my-network
+
+  # Station Server
+  station-server:
+    build:
+      context: ./server/
+      target: station
+    ports:
+      - "9040:9040"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      nacos:
+        condition: service_healthy
+    networks:
+      - my-network
+
+  # WES Server
+  wes-server:
+    build:
+      context: ./server/
+      target: wes
+    ports:
+      - "9010:9010"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      nacos:
+        condition: service_healthy
+    networks:
+      - my-network
+
+  # MySQL Service
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/mysql_data:/var/lib/mysql
+      - ./initdb.d:/docker-entrypoint-initdb.d  # Mount SQL file for initialization
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    networks:
+      my-network:
+        aliases:
+          - mysql.openwes.com
+
+  # Redis Service
+  redis:
+    image: redis:7.2
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    networks:
+      my-network:
+        aliases:
+          - redis.openwes.com
+
+  # Nacos Service
+  nacos:
+    image: nacos/nacos-server:2.0.0
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    environment:
+      MODE: standalone
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: root
+    depends_on:
+      - mysql
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8848/nacos/" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    networks:
+      my-network:
+        aliases:
+          - nacos.openwes.com
+
+# Networks
+networks:
+  my-network:
+    driver: bridge

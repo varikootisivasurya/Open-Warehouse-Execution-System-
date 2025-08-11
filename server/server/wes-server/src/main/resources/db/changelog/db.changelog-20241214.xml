@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="m_system_config_add_column_stock_config" author="Kinser">
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <tableExists tableName="m_system_config"/>
+            </and>
+            <not>
+                <columnExists tableName="m_system_config" columnName="stock_config"/>
+            </not>
+        </preConditions>
+        <comment>m_system_config增加字段stock_config</comment>
+        <sql>
+            ALTER TABLE m_system_config
+                add column `stock_config` json DEFAULT NULL comment '库存配置';
+        </sql>
+        <rollback>
+            ALTER TABLE m_system_config DROP column stock_config;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

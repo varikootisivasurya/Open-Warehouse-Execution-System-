@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Reference other changelog files -->
+    <include file="/db/changelog/db.changelog-1.0.xml"/>
+    <include file="/db/changelog/db.changelog-20241214.xml"/>
+    <include file="/db/changelog/db.changelog-20241218.xml"/>
+    <include file="/db/changelog/db.changelog-20241220.xml"/>
+    <include file="/db/changelog/db.changelog-20241221.xml"/>
+    <include file="/db/changelog/db.changelog-20241222.xml"/>
+    <include file="/db/changelog/db.changelog-20241229.xml"/>
+    <include file="/db/changelog/db.changelog-20250103.xml"/>
+    <include file="/db/changelog/db.changelog-20250108.xml"/>
+    <include file="/db/changelog/db.changelog-20250523.xml"/>
+
+</databaseChangeLog>
